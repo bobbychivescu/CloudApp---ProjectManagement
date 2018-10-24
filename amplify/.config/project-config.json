@@ -1,17 +1,17 @@
 {
     "projectName": "myapp",
     "projectPath": "/home/bob/my-app",
-    "defaultEditor": "code",
+    "defaultEditor": "none",
     "frontendHandler": {
         "javascript": "/usr/lib/node_modules/@aws-amplify/cli/node_modules/amplify-frontend-javascript"
     },
     "javascript": {
         "framework": "react",
         "config": {
-            "SourceDir": "/src",
-            "DistributionDir": "/build",
-            "BuildCommand": "build",
-            "StartCommand": "start"
+            "SourceDir": "src",
+            "DistributionDir": "build",
+            "BuildCommand": "npm run-script build",
+            "StartCommand": "npm run-script start"
         }
     },
     "providers": {
