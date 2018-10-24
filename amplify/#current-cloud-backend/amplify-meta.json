@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/hosting/template.json",
 				"logicalId": "hostingS3AndCloudFront"
 			},
-			"lastPushTimeStamp": "2018-10-24T18:38:26.070Z",
+			"lastPushTimeStamp": "2018-10-24T23:02:44.084Z",
 			"output": {
 				"S3BucketSecureURL": "https://myapp-20181024193007--hostingbucket.s3.amazonaws.com",
 				"WebsiteURL": "http://myapp-20181024193007--hostingbucket.s3-website-eu-west-1.amazonaws.com",
@@ -37,7 +37,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/auth/cognito84b57974-cloudformation-template.yml",
 				"logicalId": "authcognito84b57974"
 			},
-			"lastPushTimeStamp": "2018-10-24T18:38:26.081Z",
+			"lastPushTimeStamp": "2018-10-24T23:02:44.086Z",
 			"output": {
 				"AppClientSecret": "191vkh3qd9i9otbku6ldn159bkbhuikbkg1tastc662pmhrcjddl",
 				"UserPoolId": "eu-west-1_6tMR9zkZI",
@@ -48,6 +48,82 @@
 				"UserPoolName": "cognito84b57974_userpool_84b57974"
 			},
 			"lastPushDirHash": "tG6rD1V6zcrM0CW2Hs5/+qHMeKs="
+		}
+	},
+	"storage": {
+		"projects": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
+				"logicalId": "storageprojects"
+			},
+			"lastPushTimeStamp": "2018-10-24T23:02:44.090Z",
+			"output": {
+				"PartitionKeyName": "ID",
+				"Region": "eu-west-1",
+				"Arn": "arn:aws:dynamodb:eu-west-1:802863750415:table/projects",
+				"PartitionKeyType": "S",
+				"Name": "projects"
+			},
+			"lastPushDirHash": "dYxtPz/J0qqpXoLSmOlR+ZPjzXc="
+		}
+	},
+	"function": {
+		"dynamoDBAccessor": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "projects",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2018-10-24T22:59:53.285Z",
+			"lastPackageTimeStamp": "2018-10-24T22:59:57.417Z",
+			"distZipFilename": "dynamoDBAccessor-1540421993-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/function/dynamoDBAccessor-cloudformation-template.json",
+				"logicalId": "functiondynamoDBAccessor"
+			},
+			"lastPushTimeStamp": "2018-10-24T23:02:44.090Z",
+			"output": {
+				"Region": "eu-west-1",
+				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:dynamoDBAccessor",
+				"Name": "dynamoDBAccessor"
+			},
+			"lastPushDirHash": "AkvkVDaCLg0ioKqaYkJeLnV5AJo="
+		}
+	},
+	"api": {
+		"lambdas": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "dynamoDBAccessor",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/api/lambdas-cloudformation-template.json",
+				"logicalId": "apilambdas"
+			},
+			"lastPushTimeStamp": "2018-10-24T23:02:44.090Z",
+			"output": {
+				"ApiName": "lambdas",
+				"RootUrl": "https://y8h3jjynqg.execute-api.eu-west-1.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "/AHHrf1YNEH4E0UnSqaVbkjZMH4="
 		}
 	}
 }

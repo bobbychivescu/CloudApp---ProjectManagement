@@ -134,6 +134,57 @@
 					"authSelections": "identityPoolAndUserPool"
 				}
 			}
+		},
+		"storageprojects": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "projects",
+					"partitionKeyName": "ID",
+					"partitionKeyType": "S"
+				}
+			}
+		},
+		"functiondynamoDBAccessor": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/function/dynamoDBAccessor-cloudformation-template.json",
+				"Parameters": {
+					"storageprojectsName": {
+						"Fn::GetAtt": [
+							"storageprojects",
+							"Outputs.Name"
+						]
+					},
+					"storageprojectsArn": {
+						"Fn::GetAtt": [
+							"storageprojects",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"apilambdas": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181024192902-deployment/amplify-cfn-templates/api/lambdas-cloudformation-template.json",
+				"Parameters": {
+					"functiondynamoDBAccessorName": {
+						"Fn::GetAtt": [
+							"functiondynamoDBAccessor",
+							"Outputs.Name"
+						]
+					},
+					"functiondynamoDBAccessorArn": {
+						"Fn::GetAtt": [
+							"functiondynamoDBAccessor",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
 		}
 	},
 	"Outputs": {
