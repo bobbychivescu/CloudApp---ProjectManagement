@@ -10,7 +10,7 @@
         }
     ],
     "resourceName": "projectsCRUD",
-    "apiName": "myapp19c030d5",
+    "apiName": "myapp2621370b",
     "functionArns": [
         {
             "lambdaFunction": "projectsCRUD"
@@ -19,8 +19,8 @@
     "privacy": {
         "auth": 1,
         "unauth": 0,
-        "authRoleName": "myapp-20181103020405-authRole",
-        "unAuthRoleName": "myapp-20181103020405-unauthRole"
+        "authRoleName": "myapp-20181103160356-authRole",
+        "unAuthRoleName": "myapp-20181103160356-unauthRole"
     },
     "dependsOn": [
         {

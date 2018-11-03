@@ -26,15 +26,15 @@
 				"Runtime": "nodejs8.10",
 				"Timeout": "25",
 				"Code": {
-					"S3Bucket": "myapp-20181103020405-deployment",
-					"S3Key": "amplify-builds/projectsCRUD-1541212437-latest-build.zip"
+					"S3Bucket": "myapp-20181103160356-deployment",
+					"S3Key": "amplify-builds/projectsCRUD-1541281829-latest-build.zip"
 				}
 			}
 		},
 		"LambdaExecutionRole": {
 			"Type": "AWS::IAM::Role",
 			"Properties": {
-				"RoleName": "myappLambdaRole084d1507",
+				"RoleName": "myappLambdaRolee65a9d26",
 				"AssumeRolePolicyDocument": {
 					"Version": "2012-10-17",
 					"Statement": [

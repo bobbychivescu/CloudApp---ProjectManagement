@@ -16,7 +16,6 @@ class App extends Component {
             body: {
                 ID: String(this.ID++),
                 status: 'new',
-                manager: 'someone',
                 developers: ['john', 'bob']
             }
         });
@@ -24,7 +23,7 @@ class App extends Component {
     }
     get = async () => {
         console.log('calling api');
-        const response = await API.get('projectsCRUD', '/projects/object/1/someone');
+        const response = await API.get('projectsCRUD', '/projects/1');
         alert(JSON.stringify(response, null, 2));
     }
     list = async () => {
@@ -34,7 +33,7 @@ class App extends Component {
     }
     del = async () => {
         console.log('calling api');
-        const response = await API.del('projectsCRUD', '/projects/object/1/someone');
+        const response = await API.del('projectsCRUD', '/projects/1');
         alert(JSON.stringify(response, null, 2));
     }
 

@@ -81,56 +81,56 @@
 		"hostingS3AndCloudFront": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103020405-deployment/amplify-cfn-templates/hosting/template.json",
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103160356-deployment/amplify-cfn-templates/hosting/template.json",
 				"Parameters": {}
 			}
 		},
-		"authcognitoee857e6b": {
+		"authcognito0e9f398d": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103020405-deployment/amplify-cfn-templates/auth/cognitoee857e6b-cloudformation-template.yml",
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103160356-deployment/amplify-cfn-templates/auth/cognito0e9f398d-cloudformation-template.yml",
 				"Parameters": {
-					"identityPoolName": "cognitoee857e6b_identitypool_ee857e6b",
+					"identityPoolName": "cognito0e9f398d_identitypool_0e9f398d",
 					"allowUnauthenticatedIdentities": false,
 					"thirdPartyAuth": false,
-					"lambdaLogPolicy": "cognitoee857e6b_lambda_log_policy",
-					"openIdLambdaRoleName": "cognitoee857e6b_openid_lambda_role",
-					"openIdRolePolicy": "cognitoee857e6b_openid_pass_role_policy",
-					"openIdLambdaIAMPolicy": "cognitoee857e6b_openid_lambda_iam_policy",
-					"openIdLogPolicy": "cognitoee857e6b_openid_lambda_log_policy",
-					"userPoolName": "cognitoee857e6b_userpool_ee857e6b",
+					"lambdaLogPolicy": "cognito0e9f398d_lambda_log_policy",
+					"openIdLambdaRoleName": "cognito0e9f398d_openid_lambda_role",
+					"openIdRolePolicy": "cognito0e9f398d_openid_pass_role_policy",
+					"openIdLambdaIAMPolicy": "cognito0e9f398d_openid_lambda_iam_policy",
+					"openIdLogPolicy": "cognito0e9f398d_openid_lambda_log_policy",
+					"userPoolName": "cognito0e9f398d_userpool_0e9f398d",
 					"autoVerifiedAttributes": "email",
 					"mfaConfiguration": "OFF",
 					"mfaTypes": "SMS Text Message",
-					"roleName": "cognitoee857e6b_sns-role",
-					"roleExternalId": "cognitoee857e6b_role_external_id",
-					"policyName": "cognitoee857e6b-sns-policy",
+					"roleName": "cognito0e9f398d_sns-role",
+					"roleExternalId": "cognito0e9f398d_role_external_id",
+					"policyName": "cognito0e9f398d-sns-policy",
 					"smsAuthenticationMessage": "Your authentication code is {####}",
 					"smsVerificationMessage": "Your verification code is {####}",
 					"emailVerificationSubject": "Your verification code",
 					"emailVerificationMessage": "Your verification code is {####}",
 					"defaultPasswordPolicy": false,
 					"passwordPolicyMinLength": 8,
-					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers",
+					"passwordPolicyCharacters": "Requires Lowercase,Requires Uppercase,Requires Numbers,Requires Symbols",
 					"requiredAttributes": "email",
-					"userpoolClientName": "cognitoee857e6b_app_client",
+					"userpoolClientName": "cognito0e9f398d_app_client",
 					"userpoolClientGenerateSecret": true,
 					"userpoolClientRefreshTokenValidity": 30,
 					"userpoolClientReadAttributes": "email",
-					"mfaLambdaRole": "cognitoee857e6b_totp_lambda_role",
-					"mfaLambdaLogPolicy": "cognitoee857e6b_totp_lambda_log_policy",
-					"mfaPassRolePolicy": "cognitoee857e6b_totp_pass_role_policy",
-					"mfaLambdaIAMPolicy": "cognitoee857e6b_totp_lambda_iam_policy",
-					"userpoolClientLambdaRole": "cognitoee857e6b_userpoolclient_lambda_role",
-					"userpoolClientLogPolicy": "cognitoee857e6b_userpoolclient_lambda_log_policy",
-					"userpoolClientLambdaPolicy": "cognitoee857e6b_userpoolclient_lambda_iam_policy",
+					"mfaLambdaRole": "cognito0e9f398d_totp_lambda_role",
+					"mfaLambdaLogPolicy": "cognito0e9f398d_totp_lambda_log_policy",
+					"mfaPassRolePolicy": "cognito0e9f398d_totp_pass_role_policy",
+					"mfaLambdaIAMPolicy": "cognito0e9f398d_totp_lambda_iam_policy",
+					"userpoolClientLambdaRole": "cognito0e9f398d_userpoolclient_lambda_role",
+					"userpoolClientLogPolicy": "cognito0e9f398d_userpoolclient_lambda_log_policy",
+					"userpoolClientLambdaPolicy": "cognito0e9f398d_userpoolclient_lambda_iam_policy",
 					"userpoolClientSetAttributes": false,
 					"useDefault": "default",
-					"unAuthRoleName": "myapp-20181103020405-unauthRole",
-					"authRoleName": "myapp-20181103020405-authRole",
-					"unAuthRoleArn": "arn:aws:iam::802863750415:role/myapp-20181103020405-unauthRole",
-					"authRoleArn": "arn:aws:iam::802863750415:role/myapp-20181103020405-authRole",
-					"resourceName": "cognitoee857e6b",
+					"unAuthRoleName": "myapp-20181103160356-unauthRole",
+					"authRoleName": "myapp-20181103160356-authRole",
+					"unAuthRoleArn": "arn:aws:iam::802863750415:role/myapp-20181103160356-unauthRole",
+					"authRoleArn": "arn:aws:iam::802863750415:role/myapp-20181103160356-authRole",
+					"resourceName": "cognito0e9f398d",
 					"authSelections": "identityPoolAndUserPool"
 				}
 			}
@@ -138,7 +138,7 @@
 		"storageprojects": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103020405-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103160356-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
 				"Parameters": {
 					"tableName": "projects",
 					"partitionKeyName": "ID",
@@ -151,7 +151,7 @@
 		"functionprojectsCRUD": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103020405-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103160356-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
 				"Parameters": {
 					"storageprojectsName": {
 						"Fn::GetAtt": [
@@ -168,10 +168,10 @@
 				}
 			}
 		},
-		"apiprojectsCURD": {
+		"apiprojectsCRUD": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103020405-deployment/amplify-cfn-templates/api/projectsCURD-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181103160356-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
 				"Parameters": {
 					"functionprojectsCRUDName": {
 						"Fn::GetAtt": [
