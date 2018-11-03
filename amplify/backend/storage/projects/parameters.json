@@ -1,0 +1,7 @@
+{
+    "tableName": "projects",
+    "partitionKeyName": "ID",
+    "partitionKeyType": "S",
+    "sortKeyName": "manager",
+    "sortKeyType": "S"
+}

@@ -24,7 +24,7 @@ class App extends Component {
     }
     get = async () => {
         console.log('calling api');
-        const response = await API.get('projectsCRUD', '/projects/object/1');
+        const response = await API.get('projectsCRUD', '/projects/object/1/someone');
         alert(JSON.stringify(response, null, 2));
     }
     list = async () => {
@@ -32,9 +32,9 @@ class App extends Component {
         const response = await API.get('projectsCRUD', '/projects');
         alert(JSON.stringify(response, null, 2));
     }
-    del = async (ID) => {
+    del = async () => {
         console.log('calling api');
-        const response = await API.del('projectsCRUD', '/projects/object/1');
+        const response = await API.del('projectsCRUD', '/projects/object/1/someone');
         alert(JSON.stringify(response, null, 2));
     }
 
@@ -46,7 +46,7 @@ class App extends Component {
             <button onClick={this.post}>POST</button>
             <button onClick={this.get}>GET</button>
             <button onClick={this.list}>LIST</button>
-            <button onClick={this.del}>LIST</button>
+            <button onClick={this.del}>DEL</button>
         </header>
       </div>
     );

@@ -1,0 +1,139 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "DynamoDB resource stack creation using Amplify CLI",
+    "Parameters": {
+        "partitionKeyName": {
+            "Type": "String"
+        },
+        "partitionKeyType": {
+            "Type": "String"
+        },
+        
+        "sortKeyName": {
+            "Type": "String"
+        },
+        "sortKeyType": {
+            "Type": "String"
+        },
+        
+        "tableName": {
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "DynamoDBTable": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "AttributeDefinitions": [
+                  
+                  {
+                      "AttributeName": "ID",
+                      "AttributeType": "S"
+                  }  , 
+                  
+                  {
+                      "AttributeName": "manager",
+                      "AttributeType": "S"
+                  }  , 
+                  
+                  {
+                      "AttributeName": "status",
+                      "AttributeType": "S"
+                  } 
+                  
+                ],
+                "KeySchema": [
+                  
+                  {
+                    "AttributeName": "ID",
+                    "KeyType": "HASH"
+                  }  , 
+                  
+                  {
+                    "AttributeName": "manager",
+                    "KeyType": "RANGE"
+                  } 
+                  
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": "5",
+                    "WriteCapacityUnits": "5"
+                },
+                "TableName": {
+                   "Ref": "tableName"
+                },
+                
+                "GlobalSecondaryIndexes": [
+                  
+                    {
+                        "IndexName": "manager",
+                        "KeySchema": [
+                            
+                            {
+                                "AttributeName": "manager",
+                                "KeyType": "HASH"
+                            }  , 
+                            
+                            {
+                                "AttributeName": "status",
+                                "KeyType": "RANGE"
+                            } 
+                            
+                        ],
+                        "Projection": {
+                            "ProjectionType": "ALL"
+                        },
+                        "ProvisionedThroughput": {
+                            "ReadCapacityUnits": "5",
+                            "WriteCapacityUnits": "5"
+                        }
+                    } 
+                  
+                ]
+                
+            }
+        }
+    },
+    "Outputs": {
+        "Name": {
+            "Value": {
+                "Ref": "DynamoDBTable"
+            }
+        },
+        "Arn": {
+            "Value": {
+                "Fn::GetAtt": [
+                    "DynamoDBTable",
+                    "Arn"
+                ]
+            }
+        },
+        "PartitionKeyName": {
+            "Value": {
+                "Ref": "partitionKeyName"
+            }
+        },
+        "PartitionKeyType": {
+            "Value": {
+                "Ref": "partitionKeyType"
+            }
+        },
+        
+        "SortKeyName": {
+            "Value": {
+                "Ref": "sortKeyName"
+            }
+        },
+        "SortKeyType": {
+            "Value": {
+                "Ref": "sortKeyType"
+            }
+        },
+        
+        "Region": {
+            "Value": {
+                "Ref": "AWS::Region"
+            }
+        }
+    }
+}
