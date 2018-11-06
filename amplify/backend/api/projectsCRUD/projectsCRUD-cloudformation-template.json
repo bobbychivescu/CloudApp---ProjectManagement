@@ -25,15 +25,15 @@
     "Resources": {
         
         
-        "PolicyAPIGWmyapp2621370bauth": {
+        "PolicyAPIGWmyappd904370eauth": {
             "DependsOn": [
-              "myapp2621370b"
+              "myappd904370e"
             ],
             "Type": "AWS::IAM::Policy",
             "Properties": {
-              "PolicyName": "PolicyAPIGWmyapp2621370bauth",
+              "PolicyName": "PolicyAPIGWmyappd904370eauth",
               "Roles": [
-                "myapp-20181103160356-authRole"
+                "myapp-20181106020146-authRole"
               ],
               "PolicyDocument": {
                 "Version": "2012-10-17",
@@ -61,7 +61,7 @@
                             },
                             ":",
                             {
-                              "Ref": "myapp2621370b"
+                              "Ref": "myappd904370e"
                             },
                             "/Prod/*",
                             "/projects/*"
@@ -82,7 +82,7 @@
                             },
                             ":",
                             {
-                              "Ref": "myapp2621370b"
+                              "Ref": "myappd904370e"
                             },
                             "/Prod/*",
                             "/projects"
@@ -103,16 +103,16 @@
           },
         
         
-      "myapp2621370b": {
+      "myappd904370e": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "myapp2621370b",
+          "Name": "myappd904370e",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "myapp2621370b"
+              "title": "myappd904370e"
             },
             "host": {
                 "Fn::Join": [
@@ -386,7 +386,7 @@
                   
         
         
-        "functionprojectsCRUDPermissionmyapp2621370b": {
+        "functionprojectsCRUDPermissionmyappd904370e": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
@@ -410,7 +410,7 @@
                             },
                             ":",
                             {
-                                "Ref": "myapp2621370b"
+                                "Ref": "myappd904370e"
                             },
                             "/*/*/*"
                         ]
@@ -423,13 +423,13 @@
         
         
         
-      "DeploymentAPIGWmyapp2621370b": {
+      "DeploymentAPIGWmyappd904370e": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
           "StageName": "Prod",
           "RestApiId": {
-            "Ref": "myapp2621370b"
+            "Ref": "myappd904370e"
           }
         }
       }
@@ -437,7 +437,7 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "myapp2621370b"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "myappd904370e"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/Prod"]]}
         },
         "ApiName": {
           "Description": "API Friendly name",

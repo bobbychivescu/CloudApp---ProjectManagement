@@ -2,13 +2,6 @@
 
 const awsmobile =  {
     "aws_project_region": "eu-west-1",
-    "aws_content_delivery_bucket": "myapp-20181103160742--hostingbucket",
-    "aws_content_delivery_bucket_region": "eu-west-1",
-    "aws_content_delivery_url": "https://d9djxye9cjlo0.cloudfront.net",
-    "aws_cognito_identity_pool_id": "eu-west-1:fa7f6cf0-f22e-4cff-8d40-1fccf149d8f1",
-    "aws_cognito_region": "eu-west-1",
-    "aws_user_pools_id": "eu-west-1_0SntTm58t",
-    "aws_user_pools_web_client_id": "60ml6ckp48sqmt6eerhdib7n7p",
     "aws_dynamodb_all_tables_region": "eu-west-1",
     "aws_dynamodb_table_schemas": [
         {
@@ -16,10 +9,14 @@ const awsmobile =  {
             "region": "eu-west-1"
         }
     ],
+    "aws_cognito_identity_pool_id": "eu-west-1:f308e931-8695-4bad-9461-85713632b61d",
+    "aws_cognito_region": "eu-west-1",
+    "aws_user_pools_id": "eu-west-1_uQ9bz9JkO",
+    "aws_user_pools_web_client_id": "2btnbmuebdc0vr6nasuhi0c49v",
     "aws_cloud_logic_custom": [
         {
             "name": "projectsCRUD",
-            "endpoint": "https://tys9f8qgj4.execute-api.eu-west-1.amazonaws.com/Prod",
+            "endpoint": "https://iw91vymo11.execute-api.eu-west-1.amazonaws.com/Prod",
             "region": "eu-west-1"
         }
     ]

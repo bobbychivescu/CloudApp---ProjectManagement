@@ -32,12 +32,7 @@
                   }  , 
                   
                   {
-                      "AttributeName": "manager",
-                      "AttributeType": "S"
-                  }  , 
-                  
-                  {
-                      "AttributeName": "status",
+                      "AttributeName": "managerID",
                       "AttributeType": "S"
                   } 
                   
@@ -50,7 +45,7 @@
                   }  , 
                   
                   {
-                    "AttributeName": "manager",
+                    "AttributeName": "managerID",
                     "KeyType": "RANGE"
                   } 
                   
@@ -62,34 +57,6 @@
                 "TableName": {
                    "Ref": "tableName"
                 },
-                
-                "GlobalSecondaryIndexes": [
-                  
-                    {
-                        "IndexName": "manager",
-                        "KeySchema": [
-                            
-                            {
-                                "AttributeName": "manager",
-                                "KeyType": "HASH"
-                            }  , 
-                            
-                            {
-                                "AttributeName": "status",
-                                "KeyType": "RANGE"
-                            } 
-                            
-                        ],
-                        "Projection": {
-                            "ProjectionType": "ALL"
-                        },
-                        "ProvisionedThroughput": {
-                            "ReadCapacityUnits": "5",
-                            "WriteCapacityUnits": "5"
-                        }
-                    } 
-                  
-                ]
                 
             }
         }

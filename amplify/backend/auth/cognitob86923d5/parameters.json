@@ -1,0 +1,56 @@
+{
+    "identityPoolName": "myapp_identitypool_8c908ad1",
+    "allowUnauthenticatedIdentities": false,
+    "thirdPartyAuth": false,
+    "lambdaLogPolicy": "myapp_lambda_log_policy",
+    "openIdLambdaRoleName": "myapp_openid_lambda_role",
+    "openIdRolePolicy": "myapp_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "myapp_openid_lambda_iam_policy",
+    "openIdLogPolicy": "myapp_openid_lambda_log_policy",
+    "userPoolName": "myapp_userpool_8c908ad1",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OFF",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "myapp_sns-role",
+    "roleExternalId": "myapp_role_external_id",
+    "policyName": "myapp-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers",
+        "Requires Symbols"
+    ],
+    "requiredAttributes": [
+        "email"
+    ],
+    "userpoolClientName": "myapp_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientReadAttributes": [
+        "email"
+    ],
+    "mfaLambdaRole": "myapp_totp_lambda_role",
+    "mfaLambdaLogPolicy": "myapp_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "myapp_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "myapp_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "myapp_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "myapp_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "myapp_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": false,
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "cognitob86923d5",
+    "unAuthRoleName": "myapp-20181106020146-unauthRole",
+    "authRoleName": "myapp-20181106020146-authRole",
+    "unAuthRoleArn": "arn:aws:iam::802863750415:role/myapp-20181106020146-unauthRole",
+    "authRoleArn": "arn:aws:iam::802863750415:role/myapp-20181106020146-authRole"
+}

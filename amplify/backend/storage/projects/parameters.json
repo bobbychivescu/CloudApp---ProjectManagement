@@ -2,6 +2,6 @@
     "tableName": "projects",
     "partitionKeyName": "ID",
     "partitionKeyType": "S",
-    "sortKeyName": "manager",
+    "sortKeyName": "managerID",
     "sortKeyType": "S"
 }
