@@ -3,91 +3,77 @@ import './App.css';
 import Amplify, {API, Auth} from 'aws-amplify';
 import aws_exports from './aws-exports';
 import {withAuthenticator} from 'aws-amplify-react';
-import {Navbar, Nav, NavItem} from "react-bootstrap";
-import ProjectListAndSearch from './components/projectListAndSearch'
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import {Route, Switch, Link} from 'react-router-dom'
+import Home from './components/Home'
+import ProjectList from './components/ProjectList'
+import ProjectSingle from './components/ProjectSingle'
+import UserList from './components/UserList'
+import UserSingle from './components/UserSingle'
 
 Amplify.configure(aws_exports);
 
 class App extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            projects: [],
             user: {}
         };
     }
 
     async componentDidMount() {
-        Auth.currentAuthenticatedUser()
-            .then(user => console.log(user))
-            .catch(err => console.log(err));
-        const response = await API.get('projectsCRUD', '/projects');
-        if (response != {})
-            this.setState({ projects: response});
         const userInfo = await Auth.currentAuthenticatedUser();
         this.setState({
             user: {
-                username: userInfo.username, //useless, will use cognito identiti and name
+                username: userInfo.username,
                 email: userInfo.attributes.email,
                 phone: userInfo.attributes.phone_number
             }
         });
-    }
+        const userFromDB = await API.get('usersCRUD', '/users/' + this.state.user.username);
 
-
-    ID = 1;
-    post = async () => {
-        console.log('calling api');
-        const response = await API.post('projectsCRUD', '/projects', {
-            body: {
-                ID: String(this.ID++),
-                status: 'newer',
-                developers: ['john', 'bob'],
-                title: 'test proj',
-                managerName: this.state.user.username //will be name
-            }
-        });
-        alert(JSON.stringify(response, null, 2));
+        //first login
+        if (!userFromDB.hasOwnProperty('username')){
+            const resp = await API.post('usersCRUD', '/users', {
+                body: this.state.user
+            });
+            console.log(resp);
+        }
     }
-    get = async () => {
-        console.log('calling api');
-        const response = await API.get('projectsCRUD', '/projects/1');
-        alert(JSON.stringify(response, null, 2));
-    }
-    list = async () => {
-        console.log('calling api');
-        const response = await API.get('projectsCRUD', '/projects');
-        alert(JSON.stringify(response, null, 2));
-    }
-    del = async () => {
-        console.log('calling api');
-        const response = await API.del('projectsCRUD', '/projects/1');
-        alert(JSON.stringify(response, null, 2));
-    }
-
 
     render() {
+        const profile = "/users/" + this.state.user.username;
+        const Projects = () => (
+            <Switch>
+                <Route exact path='/projects' component={ProjectList}/>
+                <Route path='/projects/:id' component={ProjectSingle}/>
+            </Switch>
+        )
+        const Users = () => (
+            <Switch>
+                <Route exact path='/users' component={UserList}/>
+                <Route path='/users/:id' component={UserSingle}/>
+            </Switch>
+        )
         return (
             <div className="App">
                 <Navbar fluid collapseOnSelect>
                     <Nav>
-                        <NavItem>Home</NavItem>
-                        <NavItem>Profile</NavItem>
-                        <NavItem>Projects</NavItem>
-                        <NavItem>Developers</NavItem>
+                        <NavItem><Link to="/">Home</Link></NavItem>
+                        <NavItem><Link to={profile}>Profile</Link></NavItem>
+                        <NavItem><Link to="/projects">Projects</Link></NavItem>
+                        <NavItem><Link to="/users">Developers</Link></NavItem>
                     </Nav>
                 </Navbar>
 
-                <div className="col-md-6">
-                    <ProjectListAndSearch projects = {this.state.projects}/>
+                <Switch>
+                    <Route exact path='/' component={Home}/>
+                    <Route path='/projects' component={Projects}/>
+                    <Route path='/users' component={Users}/>
+                    <Route path='*' component={() => <div><h1>404 Not Found!</h1></div>}/>
+                </Switch>
 
-                    <button onClick={this.post}>POST</button>
-                    <button onClick={this.get}>GET</button>
-                </div>
-                <div  className="col-md-6">
-                    <button onClick={this.list}>LIST</button>
-                </div>
             </div>
         );
     }

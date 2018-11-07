@@ -7,6 +7,10 @@ const awsmobile =  {
         {
             "tableName": "projects",
             "region": "eu-west-1"
+        },
+        {
+            "tableName": "users",
+            "region": "eu-west-1"
         }
     ],
     "aws_cognito_identity_pool_id": "eu-west-1:f308e931-8695-4bad-9461-85713632b61d",
@@ -17,6 +21,11 @@ const awsmobile =  {
         {
             "name": "projectsCRUD",
             "endpoint": "https://iw91vymo11.execute-api.eu-west-1.amazonaws.com/Prod",
+            "region": "eu-west-1"
+        },
+        {
+            "name": "usersCRUD",
+            "endpoint": "https://ugt1tfxsii.execute-api.eu-west-1.amazonaws.com/Prod",
             "region": "eu-west-1"
         }
     ]

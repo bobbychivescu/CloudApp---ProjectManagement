@@ -91,6 +91,17 @@
 				}
 			}
 		},
+		"storageusers": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/users-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "users",
+					"partitionKeyName": "username",
+					"partitionKeyType": "S"
+				}
+			}
+		},
 		"functionprojectsCRUD": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -105,6 +116,26 @@
 					"storageprojectsArn": {
 						"Fn::GetAtt": [
 							"storageprojects",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"functionusersCRUD": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/usersCRUD-cloudformation-template.json",
+				"Parameters": {
+					"storageusersName": {
+						"Fn::GetAtt": [
+							"storageusers",
+							"Outputs.Name"
+						]
+					},
+					"storageusersArn": {
+						"Fn::GetAtt": [
+							"storageusers",
 							"Outputs.Arn"
 						]
 					}
@@ -174,6 +205,26 @@
 					"functionprojectsCRUDArn": {
 						"Fn::GetAtt": [
 							"functionprojectsCRUD",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"apiusersCRUD": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/usersCRUD-cloudformation-template.json",
+				"Parameters": {
+					"functionusersCRUDName": {
+						"Fn::GetAtt": [
+							"functionusersCRUD",
+							"Outputs.Name"
+						]
+					},
+					"functionusersCRUDArn": {
+						"Fn::GetAtt": [
+							"functionusersCRUD",
 							"Outputs.Arn"
 						]
 					}

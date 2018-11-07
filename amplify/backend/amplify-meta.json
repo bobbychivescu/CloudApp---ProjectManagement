@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
 				"logicalId": "storageprojects"
 			},
-			"lastPushTimeStamp": "2018-11-06T03:25:33.327Z",
+			"lastPushTimeStamp": "2018-11-06T14:13:58.423Z",
 			"output": {
 				"PartitionKeyName": "ID",
 				"SortKeyName": "managerID",
@@ -30,6 +30,23 @@
 				"Name": "projects"
 			},
 			"lastPushDirHash": "FmCCUwtItJN8i79Xg5GzmRK/pmY="
+		},
+		"users": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/users-cloudformation-template.json",
+				"logicalId": "storageusers"
+			},
+			"lastPushTimeStamp": "2018-11-06T14:13:58.423Z",
+			"output": {
+				"PartitionKeyName": "username",
+				"Region": "eu-west-1",
+				"Arn": "arn:aws:dynamodb:eu-west-1:802863750415:table/users",
+				"PartitionKeyType": "S",
+				"Name": "users"
+			},
+			"lastPushDirHash": "vUQehVs0Bpf6GzdeGjhTODlXTFI="
 		}
 	},
 	"function": {
@@ -54,13 +71,42 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
 				"logicalId": "functionprojectsCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-06T03:25:33.330Z",
+			"lastPushTimeStamp": "2018-11-06T14:13:58.426Z",
 			"output": {
 				"Region": "eu-west-1",
 				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:projectsCRUD",
 				"Name": "projectsCRUD"
 			},
 			"lastPushDirHash": "+b3Mm1+pwo2b25BxJQKj6eMRexI="
+		},
+		"usersCRUD": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "users",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2018-11-06T13:31:23.426Z",
+			"lastPackageTimeStamp": "2018-11-06T14:12:21.743Z",
+			"distZipFilename": "usersCRUD-1541513535-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/usersCRUD-cloudformation-template.json",
+				"logicalId": "functionusersCRUD"
+			},
+			"lastPushTimeStamp": "2018-11-06T14:13:58.433Z",
+			"output": {
+				"Region": "eu-west-1",
+				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:usersCRUD",
+				"Name": "usersCRUD"
+			},
+			"lastPushDirHash": "O8ET6JPEKxZIktmVOlz26+avH1E="
 		}
 	},
 	"auth": {
@@ -71,7 +117,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/auth/cognitob86923d5-cloudformation-template.yml",
 				"logicalId": "authcognitob86923d5"
 			},
-			"lastPushTimeStamp": "2018-11-06T03:25:33.329Z",
+			"lastPushTimeStamp": "2018-11-06T14:13:58.430Z",
 			"output": {
 				"AppClientSecret": "1hqb5bkf3hipmep50mu02gu9dvt2gib051vutiuk4ikb15rinpir",
 				"UserPoolId": "eu-west-1_uQ9bz9JkO",
@@ -102,12 +148,36 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
 				"logicalId": "apiprojectsCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-06T03:25:33.329Z",
+			"lastPushTimeStamp": "2018-11-06T14:13:58.430Z",
 			"output": {
 				"ApiName": "projectsCRUD",
 				"RootUrl": "https://iw91vymo11.execute-api.eu-west-1.amazonaws.com/Prod"
 			},
 			"lastPushDirHash": "fJGCZ+iHhvU0FR/hsgplJzrwkks="
+		},
+		"usersCRUD": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "usersCRUD",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/usersCRUD-cloudformation-template.json",
+				"logicalId": "apiusersCRUD"
+			},
+			"lastPushTimeStamp": "2018-11-06T14:13:58.431Z",
+			"output": {
+				"ApiName": "usersCRUD",
+				"RootUrl": "https://ugt1tfxsii.execute-api.eu-west-1.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "jjhd7ExrJgl7hl14767EgoPiNbs="
 		}
 	}
 }
