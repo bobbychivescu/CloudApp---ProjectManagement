@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
-
-import ProjectListAndSearch from './projectListAndSearch'
+import UserSingleSelf from './UserSingleSelf'
+import UserSingleOther from './UserSingleOther'
 
 class UserSingle extends Component{
     constructor(props) {
@@ -19,14 +19,19 @@ class UserSingle extends Component{
     }
 
     render(){
-        const user = JSON.stringify(this.state.user);
         return (
             <div>
-                {user === '{}' ?
+                {this.state.user === '{}' ?
 
                     <h3>The user you are looking for doesn't exist!</h3> :
 
-                    <h3>{user}</h3>
+                    <div>
+                    {(this.state.user.username === this.props.user) ?
+
+                        <UserSingleSelf user={this.state.user}/> :
+
+                        <UserSingleOther user={this.state.user}/>
+                    }</div>
                 }
             </div>
         )

@@ -54,12 +54,14 @@ class ProjectSingle extends Component{
                     ID: this.state.project.ID,
                     status: this.state.newStatus,
                     developers: this.state.devs,
-                    title: this.state.title,
+                    title: this.state.project.title,
                     managerName: this.state.project.managerName,
                     managerID: this.state.project.managerID
                 }})
             console.log(response);
             alert('Changes persisted!');
+        } else {
+            alert('You made no changes');
         }
     }
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
 import {FormControl} from 'react-bootstrap';
-import ProjectListAndSearch from './projectListAndSearch';
+import ProjectListDisplay from './ProjectListDisplay';
 import {v1} from 'uuid';
 
 class Home extends Component{
@@ -25,9 +25,10 @@ class Home extends Component{
 
     create = async () => {
         if(this.state.newProject !== ''){
+            const id = v1();
             const response = await API.post('projectsCRUD', '/projects', {
                 body: {
-                    ID: v1(),
+                    ID: id,
                     status: 'new',
                     developers: [],
                     title: this.state.newProject,
@@ -35,7 +36,7 @@ class Home extends Component{
                     managerID: this.props.user.username
                 }
             });
-
+        this.props.history.push('/projects/' + id);
         }else{
             alert('Name can\'t be empty!');
         }
@@ -45,7 +46,10 @@ class Home extends Component{
         return (
             <div>
                 <div className="col-md-6">
-                    <ProjectListAndSearch projects = {this.state.projects}/>
+                    <ProjectListDisplay listTitle='My Projects' projects={
+                        this.state.projects.filter(proj => {
+                            return proj.managerID === this.props.user.username;
+                        })}/>
                     <FormControl
                         type='text'
                         value={this.state.newProject}
@@ -55,7 +59,10 @@ class Home extends Component{
                     <button onClick={this.create}>Create New Project</button>
                 </div>
                 <div className="col-md-6">
-                    <button onClick={this.list}>LIST</button>
+                    <ProjectListDisplay listTitle='Other Projects' projects={
+                        this.state.projects.filter(proj => {
+                            return proj.developers.includes(this.props.user.username);
+                        })}/>
                 </div>
             </div>
         )

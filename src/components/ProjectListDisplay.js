@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
-export default class ProjectListAndSearch extends Component{
+export default class ProjectListDisplay extends Component{
 
     render(){
         return (
             <div>
-            <h2>My Projects</h2>
+            <h2>{this.props.listTitle}</h2>
             <ListGroup>
                 {this.props.projects.map(project => (
                     <ListGroupItem>

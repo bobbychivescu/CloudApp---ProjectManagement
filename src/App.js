@@ -53,6 +53,12 @@ class App extends Component {
         console.log('Current user: ' + JSON.stringify(this.state.user));
     }
 
+    signOut = () => {
+        Auth.signOut().then(() => {
+            this.props.onStateChange('SignedOut');
+        });
+    }
+
     render() {
         const profile = "/users/" + this.state.user.username;
         const Projects = () => (
@@ -64,7 +70,7 @@ class App extends Component {
         const Users = () => (
             <Switch>
                 <Route exact path='/users' component={UserList}/>
-                <Route path='/users/:id' component={UserSingle}/>
+                <Route path='/users/:id' render={(props) => <UserSingle {...props} user={this.state.user.username}/>}/>
             </Switch>
         )
         return (
@@ -76,10 +82,13 @@ class App extends Component {
                         <NavItem><Link to="/projects">Projects</Link></NavItem>
                         <NavItem><Link to="/users">Developers</Link></NavItem>
                     </Nav>
+                    <Nav pullRight>
+                        <NavItem onClick={this.signOut}>Log out</NavItem>
+                    </Nav>
                 </Navbar>
 
                 <Switch>
-                    <Route exact path='/' render={() => <Home user={this.state.user}/>}/>
+                    <Route exact path='/' render={() => <Home {...this.props} user={this.state.user}/>}/>
                     <Route path='/projects' component={Projects}/>
                     <Route path='/users' component={Users}/>
                     <Route path='*' component={() => <div><h1>404 Not Found!</h1></div>}/>
@@ -90,4 +99,4 @@ class App extends Component {
     }
 }
 
-export default withAuthenticator(App, true);
+export default withAuthenticator(App);
