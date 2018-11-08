@@ -12,25 +12,6 @@
 		}
 	},
 	"storage": {
-		"projects": {
-			"service": "DynamoDB",
-			"providerPlugin": "awscloudformation",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
-				"logicalId": "storageprojects"
-			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.423Z",
-			"output": {
-				"PartitionKeyName": "ID",
-				"SortKeyName": "managerID",
-				"SortKeyType": "S",
-				"Region": "eu-west-1",
-				"Arn": "arn:aws:dynamodb:eu-west-1:802863750415:table/projects",
-				"PartitionKeyType": "S",
-				"Name": "projects"
-			},
-			"lastPushDirHash": "FmCCUwtItJN8i79Xg5GzmRK/pmY="
-		},
 		"users": {
 			"service": "DynamoDB",
 			"providerPlugin": "awscloudformation",
@@ -38,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/users-cloudformation-template.json",
 				"logicalId": "storageusers"
 			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.423Z",
+			"lastPushTimeStamp": "2018-11-07T17:16:32.824Z",
 			"output": {
 				"PartitionKeyName": "username",
 				"Region": "eu-west-1",
@@ -47,38 +28,26 @@
 				"Name": "users"
 			},
 			"lastPushDirHash": "vUQehVs0Bpf6GzdeGjhTODlXTFI="
+		},
+		"projects": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
+				"logicalId": "storageprojects"
+			},
+			"lastPushTimeStamp": "2018-11-07T17:16:32.839Z",
+			"output": {
+				"PartitionKeyName": "ID",
+				"Region": "eu-west-1",
+				"Arn": "arn:aws:dynamodb:eu-west-1:802863750415:table/projects",
+				"PartitionKeyType": "S",
+				"Name": "projects"
+			},
+			"lastPushDirHash": "dYxtPz/J0qqpXoLSmOlR+ZPjzXc="
 		}
 	},
 	"function": {
-		"projectsCRUD": {
-			"service": "Lambda",
-			"providerPlugin": "awscloudformation",
-			"build": true,
-			"dependsOn": [
-				{
-					"category": "storage",
-					"resourceName": "projects",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			],
-			"lastBuildTimeStamp": "2018-11-06T03:16:58.566Z",
-			"lastPackageTimeStamp": "2018-11-06T03:24:27.329Z",
-			"distZipFilename": "projectsCRUD-1541474660-latest-build.zip",
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
-				"logicalId": "functionprojectsCRUD"
-			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.426Z",
-			"output": {
-				"Region": "eu-west-1",
-				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:projectsCRUD",
-				"Name": "projectsCRUD"
-			},
-			"lastPushDirHash": "+b3Mm1+pwo2b25BxJQKj6eMRexI="
-		},
 		"usersCRUD": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
@@ -100,13 +69,42 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/usersCRUD-cloudformation-template.json",
 				"logicalId": "functionusersCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.433Z",
+			"lastPushTimeStamp": "2018-11-07T17:16:32.826Z",
 			"output": {
 				"Region": "eu-west-1",
 				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:usersCRUD",
 				"Name": "usersCRUD"
 			},
 			"lastPushDirHash": "O8ET6JPEKxZIktmVOlz26+avH1E="
+		},
+		"projectsCRUD": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "projects",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2018-11-07T17:13:53.351Z",
+			"lastPackageTimeStamp": "2018-11-07T17:13:56.055Z",
+			"distZipFilename": "projectsCRUD-1541610833-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
+				"logicalId": "functionprojectsCRUD"
+			},
+			"lastPushTimeStamp": "2018-11-07T17:16:32.839Z",
+			"output": {
+				"Region": "eu-west-1",
+				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:projectsCRUD",
+				"Name": "projectsCRUD"
+			},
+			"lastPushDirHash": "VIF53hFx5+x6CCNy5m259NNqoxg="
 		}
 	},
 	"auth": {
@@ -117,7 +115,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/auth/cognitob86923d5-cloudformation-template.yml",
 				"logicalId": "authcognitob86923d5"
 			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.430Z",
+			"lastPushTimeStamp": "2018-11-07T17:16:32.827Z",
 			"output": {
 				"AppClientSecret": "1hqb5bkf3hipmep50mu02gu9dvt2gib051vutiuk4ikb15rinpir",
 				"UserPoolId": "eu-west-1_uQ9bz9JkO",
@@ -131,30 +129,6 @@
 		}
 	},
 	"api": {
-		"projectsCRUD": {
-			"service": "API Gateway",
-			"providerPlugin": "awscloudformation",
-			"dependsOn": [
-				{
-					"category": "function",
-					"resourceName": "projectsCRUD",
-					"attributes": [
-						"Name",
-						"Arn"
-					]
-				}
-			],
-			"providerMetadata": {
-				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
-				"logicalId": "apiprojectsCRUD"
-			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.430Z",
-			"output": {
-				"ApiName": "projectsCRUD",
-				"RootUrl": "https://iw91vymo11.execute-api.eu-west-1.amazonaws.com/Prod"
-			},
-			"lastPushDirHash": "fJGCZ+iHhvU0FR/hsgplJzrwkks="
-		},
 		"usersCRUD": {
 			"service": "API Gateway",
 			"providerPlugin": "awscloudformation",
@@ -172,12 +146,36 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/usersCRUD-cloudformation-template.json",
 				"logicalId": "apiusersCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-06T14:13:58.431Z",
+			"lastPushTimeStamp": "2018-11-07T17:16:32.837Z",
 			"output": {
 				"ApiName": "usersCRUD",
 				"RootUrl": "https://ugt1tfxsii.execute-api.eu-west-1.amazonaws.com/Prod"
 			},
 			"lastPushDirHash": "jjhd7ExrJgl7hl14767EgoPiNbs="
+		},
+		"projectsCRUD": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "projectsCRUD",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
+				"logicalId": "apiprojectsCRUD"
+			},
+			"lastPushTimeStamp": "2018-11-07T17:16:32.839Z",
+			"output": {
+				"ApiName": "projectsCRUD",
+				"RootUrl": "https://eiymxefuj6.execute-api.eu-west-1.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "ZdUIa87jwLLe26eOOXX5xCtzMe8="
 		}
 	}
 }

@@ -10,7 +10,7 @@
         }
     ],
     "resourceName": "projectsCRUD",
-    "apiName": "myappd904370e",
+    "apiName": "myappf736d521",
     "functionArns": [
         {
             "lambdaFunction": "projectsCRUD"

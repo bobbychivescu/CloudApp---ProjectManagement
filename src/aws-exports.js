@@ -5,11 +5,11 @@ const awsmobile =  {
     "aws_dynamodb_all_tables_region": "eu-west-1",
     "aws_dynamodb_table_schemas": [
         {
-            "tableName": "projects",
+            "tableName": "users",
             "region": "eu-west-1"
         },
         {
-            "tableName": "users",
+            "tableName": "projects",
             "region": "eu-west-1"
         }
     ],
@@ -19,13 +19,13 @@ const awsmobile =  {
     "aws_user_pools_web_client_id": "2btnbmuebdc0vr6nasuhi0c49v",
     "aws_cloud_logic_custom": [
         {
-            "name": "projectsCRUD",
-            "endpoint": "https://iw91vymo11.execute-api.eu-west-1.amazonaws.com/Prod",
+            "name": "usersCRUD",
+            "endpoint": "https://ugt1tfxsii.execute-api.eu-west-1.amazonaws.com/Prod",
             "region": "eu-west-1"
         },
         {
-            "name": "usersCRUD",
-            "endpoint": "https://ugt1tfxsii.execute-api.eu-west-1.amazonaws.com/Prod",
+            "name": "projectsCRUD",
+            "endpoint": "https://eiymxefuj6.execute-api.eu-west-1.amazonaws.com/Prod",
             "region": "eu-west-1"
         }
     ]

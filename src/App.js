@@ -24,22 +24,33 @@ class App extends Component {
 
     async componentDidMount() {
         const userInfo = await Auth.currentAuthenticatedUser();
-        this.setState({
-            user: {
-                username: userInfo.username,
-                email: userInfo.attributes.email,
-                phone: userInfo.attributes.phone_number
-            }
-        });
-        const userFromDB = await API.get('usersCRUD', '/users/' + this.state.user.username);
-
+        const userFromDB = await API.get('usersCRUD', '/users/' + userInfo.username);
         //first login
+        console.log(JSON.stringify(userFromDB));
         if (!userFromDB.hasOwnProperty('username')){
+            while(!this.state.user.hasOwnProperty('username')){
+                const name = prompt('This is your first login. Please provide your full name to complete registration');
+                if(name !== null)
+                    this.setState({
+                        user: {
+                            username: userInfo.username,
+                            email: userInfo.attributes.email,
+                            phone: userInfo.attributes.phone_number,
+                            fullName: name
+                        }
+                    });
+            }
             const resp = await API.post('usersCRUD', '/users', {
                 body: this.state.user
             });
-            console.log(resp);
+            console.log('after posting user:' + JSON.stringify(resp));
+        }else{
+            this.setState({
+                user: userFromDB
+            });
         }
+
+        console.log('Current user: ' + JSON.stringify(this.state.user));
     }
 
     render() {
@@ -47,7 +58,7 @@ class App extends Component {
         const Projects = () => (
             <Switch>
                 <Route exact path='/projects' component={ProjectList}/>
-                <Route path='/projects/:id' component={ProjectSingle}/>
+                <Route path='/projects/:id' render={(props) => <ProjectSingle {...props} user={this.state.user.username}/>}/>
             </Switch>
         )
         const Users = () => (
@@ -68,7 +79,7 @@ class App extends Component {
                 </Navbar>
 
                 <Switch>
-                    <Route exact path='/' component={Home}/>
+                    <Route exact path='/' render={() => <Home user={this.state.user}/>}/>
                     <Route path='/projects' component={Projects}/>
                     <Route path='/users' component={Users}/>
                     <Route path='*' component={() => <div><h1>404 Not Found!</h1></div>}/>

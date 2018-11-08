@@ -78,19 +78,6 @@
 				}
 			}
 		},
-		"storageprojects": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
-				"Parameters": {
-					"tableName": "projects",
-					"partitionKeyName": "ID",
-					"partitionKeyType": "S",
-					"sortKeyName": "managerID",
-					"sortKeyType": "S"
-				}
-			}
-		},
 		"storageusers": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -102,23 +89,14 @@
 				}
 			}
 		},
-		"functionprojectsCRUD": {
+		"storageprojects": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
 				"Parameters": {
-					"storageprojectsName": {
-						"Fn::GetAtt": [
-							"storageprojects",
-							"Outputs.Name"
-						]
-					},
-					"storageprojectsArn": {
-						"Fn::GetAtt": [
-							"storageprojects",
-							"Outputs.Arn"
-						]
-					}
+					"tableName": "projects",
+					"partitionKeyName": "ID",
+					"partitionKeyType": "S"
 				}
 			}
 		},
@@ -136,6 +114,26 @@
 					"storageusersArn": {
 						"Fn::GetAtt": [
 							"storageusers",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"functionprojectsCRUD": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
+				"Parameters": {
+					"storageprojectsName": {
+						"Fn::GetAtt": [
+							"storageprojects",
+							"Outputs.Name"
+						]
+					},
+					"storageprojectsArn": {
+						"Fn::GetAtt": [
+							"storageprojects",
 							"Outputs.Arn"
 						]
 					}
@@ -191,26 +189,6 @@
 				}
 			}
 		},
-		"apiprojectsCRUD": {
-			"Type": "AWS::CloudFormation::Stack",
-			"Properties": {
-				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
-				"Parameters": {
-					"functionprojectsCRUDName": {
-						"Fn::GetAtt": [
-							"functionprojectsCRUD",
-							"Outputs.Name"
-						]
-					},
-					"functionprojectsCRUDArn": {
-						"Fn::GetAtt": [
-							"functionprojectsCRUD",
-							"Outputs.Arn"
-						]
-					}
-				}
-			}
-		},
 		"apiusersCRUD": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -225,6 +203,26 @@
 					"functionusersCRUDArn": {
 						"Fn::GetAtt": [
 							"functionusersCRUD",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"apiprojectsCRUD": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
+				"Parameters": {
+					"functionprojectsCRUDName": {
+						"Fn::GetAtt": [
+							"functionprojectsCRUD",
+							"Outputs.Name"
+						]
+					},
+					"functionprojectsCRUDArn": {
+						"Fn::GetAtt": [
+							"functionprojectsCRUD",
 							"Outputs.Arn"
 						]
 					}

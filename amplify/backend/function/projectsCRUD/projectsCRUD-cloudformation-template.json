@@ -27,14 +27,14 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "myapp-20181106020146-deployment",
-					"S3Key": "amplify-builds/projectsCRUD-1541474660-latest-build.zip"
+					"S3Key": "amplify-builds/projectsCRUD-1541610833-latest-build.zip"
 				}
 			}
 		},
 		"LambdaExecutionRole": {
 			"Type": "AWS::IAM::Role",
 			"Properties": {
-				"RoleName": "myappLambdaRole28e45dda",
+				"RoleName": "myappLambdaRole0328e103",
 				"AssumeRolePolicyDocument": {
 					"Version": "2012-10-17",
 					"Statement": [

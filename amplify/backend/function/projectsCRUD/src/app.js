@@ -16,16 +16,11 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 let tableName = "projects";
 
-const userIdPresent = false; // TODO: update in case is required to use that definition
 const partitionKeyName = "ID";
 const partitionKeyType = "S";
-const sortKeyName = "managerID";
-const sortKeyType = "S";
-const hasSortKey = sortKeyName !== "";
 const path = "/projects";
-const UNAUTH = 'UNAUTH';
 const hashKeyPath = '/:' + partitionKeyName;
-const sortKeyPath = hasSortKey ? '/:' + sortKeyName : '';
+
 // declare a new express app
 var app = express()
 app.use(bodyParser.json())
@@ -47,7 +42,6 @@ const convertUrlType = (param, type) => {
       return param;
   }
 }
-
 /********************************
  * HTTP Get method for list objects *
  ********************************/
@@ -75,7 +69,6 @@ app.get(path, function(req, res) {
 app.get(path + hashKeyPath, function(req, res) {
     var params = {};
     params[partitionKeyName] = req.params[partitionKeyName];
-    params[sortKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId;
 
     let getItemParams = {
         TableName: tableName,
@@ -98,84 +91,44 @@ app.get(path + hashKeyPath, function(req, res) {
 
 
 /************************************
-* HTTP put method for insert object *
-*************************************/
+ * HTTP put method for insert object *
+ *************************************/
 
 app.put(path, function(req, res) {
 
-    req.body['managerID'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId;
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
-  }
-  dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'put call succeed!', url: req.url, data: data})
+    let putItemParams = {
+        TableName: tableName,
+        Item: req.body
     }
-  });
+    dynamodb.put(putItemParams, (err, data) => {
+        if(err) {
+            res.json({error: err, url: req.url, body: req.body});
+        } else{
+            res.json({success: 'put call succeed!', url: req.url, data: data})
+        }
+    });
 });
 
 /************************************
-* HTTP post method for insert object *
-*************************************/
+ * HTTP post method for insert object *
+ *************************************/
 
 app.post(path, function(req, res) {
 
-    req.body['managerID'] = req.apiGateway.event.requestContext.identity.cognitoIdentityId;
-
-  let putItemParams = {
-    TableName: tableName,
-    Item: req.body
-  }
-
-  dynamodb.put(putItemParams, (err, data) => {
-    if(err) {
-      res.json({error: err, url: req.url, body: req.body});
-    } else{
-      res.json({success: 'post call succeed!', url: req.url, data: data})
+    let putItemParams = {
+        TableName: tableName,
+        Item: req.body
     }
-  });
+
+    dynamodb.put(putItemParams, (err, data) => {
+        if(err) {
+            res.json({error: err, url: req.url, body: req.body});
+        } else{
+            res.json({success: 'post call succeed!', url: req.url, data: data})
+        }
+    });
 });
 
-/**************************************
-* HTTP remove method to delete object *
-***************************************/
-
-app.delete(path + '/object' + hashKeyPath + sortKeyPath, function(req, res) {
-  var params = {};
-  if (userIdPresent && req.apiGateway) {
-    params[partitionKeyName] = req.apiGateway.event.requestContext.identity.cognitoIdentityId || UNAUTH;
-  } else {
-    params[partitionKeyName] = req.params[partitionKeyName];
-     try {
-      params[partitionKeyName] = convertUrlType(req.params[partitionKeyName], partitionKeyType);
-    } catch(err) {
-      res.json({error: 'Wrong column type ' + err});
-    }
-  }
-  if (hasSortKey) {
-    try {
-      params[sortKeyName] = convertUrlType(req.params[sortKeyName], sortKeyType);
-    } catch(err) {
-      res.json({error: 'Wrong column type ' + err});
-    }
-  }
-
-  let removeItemParams = {
-    TableName: tableName,
-    Key: params
-  }
-  dynamodb.delete(removeItemParams, (err, data)=> {
-    if(err) {
-      res.json({error: err, url: req.url});
-    } else {
-      res.json({url: req.url, data: data});
-    }
-  });
-});
 app.listen(3000, function() {
     console.log("App started")
 });

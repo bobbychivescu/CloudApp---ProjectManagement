@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
-
-import ProjectListAndSearch from './projectListAndSearch'
+import {FormControl} from 'react-bootstrap';
+import ProjectListAndSearch from './projectListAndSearch';
+import {v1} from 'uuid';
 
 class Home extends Component{
     constructor(props) {
         super(props);
         this.state = {
             projects: [],
+            newProject: ''
         };
     }
 
@@ -17,47 +19,40 @@ class Home extends Component{
             this.setState({projects: response});
     }
 
-
-    ID = 1;
-    post = async () => {
-        console.log('calling api');
-        const response = await API.post('projectsCRUD', '/projects', {
-            body: {
-                ID: String(this.ID++),
-                status: 'newer',
-                developers: ['john', 'bob'],
-                title: 'test proj',
-                managerName: this.state.user.username //will be name
-            }
-        });
-        alert(JSON.stringify(response, null, 2));
-    }
-    get = async () => {
-        console.log('calling api');
-        const response = await API.get('projectsCRUD', '/projects/1');
-        alert(JSON.stringify(response, null, 2));
-    }
-    list = async () => {
-        console.log('calling api');
-        const response = await API.get('projectsCRUD', '/projects');
-        alert(JSON.stringify(response, null, 2));
-    }
-    del = async () => {
-        console.log('calling api');
-        const response = await API.del('projectsCRUD', '/projects/1');
-        alert(JSON.stringify(response, null, 2));
+    handleChange = (e) => {
+        this.setState({ newProject: e.target.value });
     }
 
+    create = async () => {
+        if(this.state.newProject !== ''){
+            const response = await API.post('projectsCRUD', '/projects', {
+                body: {
+                    ID: v1(),
+                    status: 'new',
+                    developers: [],
+                    title: this.state.newProject,
+                    managerName: this.props.user.fullName,
+                    managerID: this.props.user.username
+                }
+            });
 
+        }else{
+            alert('Name can\'t be empty!');
+        }
+    }
 
     render(){
         return (
             <div>
                 <div className="col-md-6">
                     <ProjectListAndSearch projects = {this.state.projects}/>
-
-                    <button onClick={this.post}>POST</button>
-                    <button onClick={this.get}>GET</button>
+                    <FormControl
+                        type='text'
+                        value={this.state.newProject}
+                        placeholder='Enter new project name'
+                        onChange={this.handleChange}
+                    />
+                    <button onClick={this.create}>Create New Project</button>
                 </div>
                 <div className="col-md-6">
                     <button onClick={this.list}>LIST</button>

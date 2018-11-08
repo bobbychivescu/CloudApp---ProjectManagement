@@ -9,13 +9,6 @@
             "Type": "String"
         },
         
-        "sortKeyName": {
-            "Type": "String"
-        },
-        "sortKeyType": {
-            "Type": "String"
-        },
-        
         "tableName": {
             "Type": "String"
         }
@@ -29,11 +22,6 @@
                   {
                       "AttributeName": "ID",
                       "AttributeType": "S"
-                  }  , 
-                  
-                  {
-                      "AttributeName": "managerID",
-                      "AttributeType": "S"
                   } 
                   
                 ],
@@ -42,11 +30,6 @@
                   {
                     "AttributeName": "ID",
                     "KeyType": "HASH"
-                  }  , 
-                  
-                  {
-                    "AttributeName": "managerID",
-                    "KeyType": "RANGE"
                   } 
                   
                 ],
@@ -83,17 +66,6 @@
         "PartitionKeyType": {
             "Value": {
                 "Ref": "partitionKeyType"
-            }
-        },
-        
-        "SortKeyName": {
-            "Value": {
-                "Ref": "sortKeyName"
-            }
-        },
-        "SortKeyType": {
-            "Value": {
-                "Ref": "sortKeyType"
             }
         },
         
