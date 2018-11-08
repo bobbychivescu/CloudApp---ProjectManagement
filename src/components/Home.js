@@ -36,7 +36,8 @@ class Home extends Component{
                     managerID: this.props.user.username
                 }
             });
-        this.props.history.push('/projects/' + id);
+            console.log(response);
+            this.props.history.push('/projects/' + id);
         }else{
             alert('Name can\'t be empty!');
         }
