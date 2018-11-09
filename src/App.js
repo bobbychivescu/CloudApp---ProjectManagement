@@ -27,6 +27,7 @@ class App extends Component {
         const userFromDB = await API.get('usersCRUD', '/users/' + userInfo.username);
         //first login
         console.log(JSON.stringify(userFromDB));
+        Auth.updateUserAttributes()
         if (!userFromDB.hasOwnProperty('username')){
             while(!this.state.user.hasOwnProperty('username')){
                 const name = prompt('This is your first login. Please provide your full name to complete registration');
@@ -75,7 +76,7 @@ class App extends Component {
         )
         return (
             <div className="App">
-                <Navbar fluid collapseOnSelect>
+                <Navbar fluid>
                     <Nav>
                         <NavItem><Link to="/">Home</Link></NavItem>
                         <NavItem><Link to={profile}>Profile</Link></NavItem>

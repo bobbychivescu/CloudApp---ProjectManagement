@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
-import {FormControl} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import ProjectListDisplay from './ProjectListDisplay';
 import {v1} from 'uuid';
+import {Input} from "semantic-ui-react";
 
 class Home extends Component{
     constructor(props) {
@@ -43,6 +44,15 @@ class Home extends Component{
         }
     }
 
+    mail = async () => {
+        const response = await API.post('email', '/email', {
+            body: {
+                test: 'dadadada'
+            }
+        });
+        console.log(response);
+    }
+
     render(){
         return (
             <div>
@@ -51,19 +61,18 @@ class Home extends Component{
                         this.state.projects.filter(proj => {
                             return proj.managerID === this.props.user.username;
                         })}/>
-                    <FormControl
-                        type='text'
-                        value={this.state.newProject}
+                    <Input
                         placeholder='Enter new project name'
                         onChange={this.handleChange}
                     />
-                    <button onClick={this.create}>Create New Project</button>
+                    <Button onClick={this.create}>Create New Project</Button>
                 </div>
                 <div className="col-md-6">
                     <ProjectListDisplay listTitle='Other Projects' projects={
                         this.state.projects.filter(proj => {
                             return proj.developers.includes(this.props.user.username);
                         })}/>
+                    <Button onClick={this.mail}>send mail</Button>
                 </div>
             </div>
         )

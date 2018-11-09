@@ -27,6 +27,11 @@ const awsmobile =  {
             "name": "projectsCRUD",
             "endpoint": "https://eiymxefuj6.execute-api.eu-west-1.amazonaws.com/Prod",
             "region": "eu-west-1"
+        },
+        {
+            "name": "email",
+            "endpoint": "https://obz564xhuf.execute-api.eu-west-1.amazonaws.com/Prod",
+            "region": "eu-west-1"
         }
     ]
 };

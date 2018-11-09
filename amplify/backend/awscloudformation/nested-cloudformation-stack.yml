@@ -140,6 +140,13 @@
 				}
 			}
 		},
+		"functionsendEmail": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/sendEmail-cloudformation-template.json",
+				"Parameters": {}
+			}
+		},
 		"authcognitob86923d5": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -223,6 +230,26 @@
 					"functionprojectsCRUDArn": {
 						"Fn::GetAtt": [
 							"functionprojectsCRUD",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"apiemail": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/email-cloudformation-template.json",
+				"Parameters": {
+					"functionsendEmailName": {
+						"Fn::GetAtt": [
+							"functionsendEmail",
+							"Outputs.Name"
+						]
+					},
+					"functionsendEmailArn": {
+						"Fn::GetAtt": [
+							"functionsendEmail",
 							"Outputs.Arn"
 						]
 					}

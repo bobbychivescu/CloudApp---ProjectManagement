@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
 import {Link} from "react-router-dom";
-import {FormControl} from "react-bootstrap";
+import {Button} from "react-bootstrap";
+import {Divider, List, Input} from "semantic-ui-react";
 
 class ProjectSingleSelf extends Component{
     constructor(props) {
@@ -64,37 +65,32 @@ class ProjectSingleSelf extends Component{
         const project = this.props.project;
         const devs = this.state.devs;
         return (
-            <div>
-                <h3>{project.title}</h3>
-                <h4>Manager: <Link to={'/users/' + project.managerID}>{project.managerName}</Link></h4>
-
-                <h5>Status: {project.status}</h5>
-                <FormControl
-                    type = 'text'
-                    value={this.state.newStatus}
-                    placeholder='new status...'
-                    onChange={this.changeStatus}
-                />
-
-                <h5>Devs: </h5>
+            <div style={{padding:'15px'}} align="left">
+                <h1>Project Details</h1>
+                <Divider/>
+                <h2>Title: {project.title}</h2>
+                <h2>Manager: <Link to={'/users/' + project.managerID}>{project.managerName}</Link></h2>
+                <h2>Status: <Input size='mini' placeholder={project.status} onChange={this.changeStatus}/></h2>
+                <h2>Developers: </h2>
+                <Divider/>
                 {(Array.isArray(devs) && devs.length > 0) ?
                     <div>
-                        {devs.map(dev => (
-                            <h5><Link to={'/users/' + dev}>{dev}</Link></h5>
-                        ))}
+                        <List bulleted>
+                            {devs.map(dev => (
+                                <List.Item><h3><Link to={'/users/' + dev}>{dev}</Link></h3></List.Item>
+                            ))}
+                        </List>
                     </div> :
 
-                    <h5>No devs yet!</h5>
+                    <h3>No devs yet!</h3>
                 }
-                <FormControl
-                    type = 'text'
-                    value={this.state.newDev}
-                    placeholder={'Add by username...'}
+                <Input
+                    placeholder='Add by username...'
                     onChange={this.changeDev}
                 />
-                <button onClick={this.addDev}>Add Developer</button>
-
-                <button onClick={this.save}>Save</button>
+                <Button onClick={this.addDev}>Add Developer</Button>
+                <Divider/>
+                <Button onClick={this.save}>Save Changes</Button>
             </div>
         )
     }

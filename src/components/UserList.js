@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
-import {FormControl, ListGroup, ListGroupItem} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import {Container, Card, Input} from "semantic-ui-react";
 
 class UserList extends Component{
     constructor(props) {
@@ -35,22 +35,27 @@ class UserList extends Component{
     render(){
         return (
             <div>
-                <FormControl
-                    type='text'
-                    value={this.state.filer}
+                <Input
+                    style={{width: '50%'}}
+                    icon='search'
                     placeholder='search by name, username, email...'
                     onChange={this.filterList}
                 />
+                <h2>Users</h2>
+                <Container style={{padding: 10}}>
+                    <Card.Group>
+                        {this.state.filtered.map(user => (
+                            <Card key={user.username}>
+                                <Card.Content textAlign='left'>
+                                    <Card.Header><Link to={'/users/' + user.username}>{user.fullName}</Link></Card.Header>
+                                    <Card.Meta>{user.username}</Card.Meta>
+                                    <Card.Description>{user.email}</Card.Description>
 
-                <ListGroup>
-                    {this.state.filtered.map(user => (
-                        <ListGroupItem>
-                            <h3><Link to={'/users/' + user.username}>{user.fullName}</Link></h3>
-                            <h4>Username: {user.username}</h4>
-                            <h4>Email: {user.email}</h4>
-                        </ListGroupItem>
-                    ))}
-                </ListGroup>
+                                </Card.Content>
+                            </Card>
+                        ))}
+                    </Card.Group>
+                </Container>
             </div>
         )
     }

@@ -27,7 +27,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "myapp-20181106020146-deployment",
-					"S3Key": "amplify-builds/usersCRUD-1541513535-latest-build.zip"
+					"S3Key": "amplify-builds/usersCRUD-1541777167-latest-build.zip"
 				}
 			}
 		},

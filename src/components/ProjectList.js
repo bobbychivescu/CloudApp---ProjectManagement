@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
-
 import ProjectListDisplay from './ProjectListDisplay'
-import {FormControl} from "react-bootstrap";
+import {Input} from "semantic-ui-react";
 
 class ProjectList extends Component{
     constructor(props) {
@@ -37,9 +36,9 @@ class ProjectList extends Component{
     render(){
         return (
             <div>
-                <FormControl
-                    type='text'
-                    value={this.state.filer}
+                <Input
+                    style={{width: '50%'}}
+                    icon='search'
                     placeholder='search by project title, manager name/username, status...'
                     onChange={this.filterList}
                 />

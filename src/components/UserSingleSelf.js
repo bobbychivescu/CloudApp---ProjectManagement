@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {API} from 'aws-amplify';
-import {FormControl} from "react-bootstrap";
+import {Button} from "react-bootstrap";
+import {Divider, Input, List} from "semantic-ui-react";
 
 class UserSingleSelf extends Component{
     constructor(props) {
@@ -59,39 +60,36 @@ class UserSingleSelf extends Component{
     }
     render(){
         const user = this.props.user;
+        const address = user.hasOwnProperty('address') ? user.address : 'No address added yet';
         return (
-            <div>
-                <h3>{user.fullName}</h3>
-                <h4>username: {user.username}</h4>
-                <h4>email: {user.email}</h4>
-                <h4>Phone: {user.phone}</h4>
-                {user.hasOwnProperty('address') ?
-                    <h4>Address: {user.address}</h4> :
-
-                    <h4>No address added yet</h4>
-                }
-                <FormControl
-                    type='text'
-                    value={this.state.newAddress}
-                    placeholder='update address...'
-                    onChange={this.changeAddress}
-                />
+            <div style={{padding:'15px'}} align="left">
+                <h1>User Details</h1>
+                <Divider/>
+                <h2>Name: {user.fullName}</h2>
+                <h2>Username: {user.username}</h2>
+                <h2>Email: {user.email}</h2>
+                <h2>Phone: {user.phone}</h2>
+                <h2>Address: <Input size='mini' placeholder={address} onChange={this.changeAddress}/></h2>
+                <h2>Skills: </h2>
+                <Divider/>
                 {(this.state.skills.length > 0) ?
                     <div>
-                        <h4>Skills: </h4>
-                        {this.state.skills.map(skill => <h5>{skill}</h5>)}
+                        <List bulleted>
+                            {this.state.skills.map(skill => (
+                                <List.Item><h3>{skill}</h3></List.Item>
+                            ))}
+                        </List>
                     </div> :
 
-                    <h4>No skills added yet</h4>
+                    <h3>No skills added yet</h3>
                 }
-                <FormControl
-                    type='text'
-                    value={this.state.newSkill}
+                <Input
                     placeholder='add skill...'
                     onChange={this.changeSkill}
                 />
-                <button onClick={this.addSkill}>Add Skill</button>
-                <button onClick={this.save}>Save</button>
+                <Button onClick={this.addSkill}>Add Skill</Button>
+                <Divider/>
+                <Button onClick={this.save}>Save Changes</Button>
             </div>
         )
     }

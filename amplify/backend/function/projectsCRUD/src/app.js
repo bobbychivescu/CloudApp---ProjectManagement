@@ -33,15 +33,7 @@ app.use(function(req, res, next) {
   next()
 });
 
-// convert url string param to expected Type
-const convertUrlType = (param, type) => {
-  switch(type) {
-    case "N":
-      return Number.parseInt(param);
-    default:
-      return param;
-  }
-}
+
 /********************************
  * HTTP Get method for list objects *
  ********************************/
