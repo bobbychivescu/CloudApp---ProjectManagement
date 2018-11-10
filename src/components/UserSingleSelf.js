@@ -57,7 +57,7 @@ class UserSingleSelf extends Component{
 
     validateSkills = () => {
         if(this.props.user.hasOwnProperty('skills')){
-            if(this.props.user.skills.length < this.state.skills)
+            if(this.props.user.skills.length < this.state.skills.length)
                 return true;
             else return false;
         } else {

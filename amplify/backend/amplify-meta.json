@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/users-cloudformation-template.json",
 				"logicalId": "storageusers"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.441Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.186Z",
 			"output": {
 				"PartitionKeyName": "username",
 				"Region": "eu-west-1",
@@ -36,7 +36,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/storage/projects-cloudformation-template.json",
 				"logicalId": "storageprojects"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.442Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.188Z",
 			"output": {
 				"PartitionKeyName": "ID",
 				"Region": "eu-west-1",
@@ -63,19 +63,19 @@
 				}
 			],
 			"lastBuildTimeStamp": "2018-11-06T13:31:23.426Z",
-			"lastPackageTimeStamp": "2018-11-09T15:26:19.094Z",
-			"distZipFilename": "usersCRUD-1541777167-latest-build.zip",
+			"lastPackageTimeStamp": "2018-11-10T15:34:29.309Z",
+			"distZipFilename": "usersCRUD-1541864060-latest-build.zip",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/usersCRUD-cloudformation-template.json",
 				"logicalId": "functionusersCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.444Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.202Z",
 			"output": {
 				"Region": "eu-west-1",
 				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:usersCRUD",
 				"Name": "usersCRUD"
 			},
-			"lastPushDirHash": "wGlKRfPUpfBPfUz6GLTgoH5i4xI="
+			"lastPushDirHash": "I/6EdODFGu7VVKUPXNhgWaUkhK8="
 		},
 		"projectsCRUD": {
 			"service": "Lambda",
@@ -92,39 +92,39 @@
 				}
 			],
 			"lastBuildTimeStamp": "2018-11-07T17:13:53.351Z",
-			"lastPackageTimeStamp": "2018-11-09T15:26:19.284Z",
-			"distZipFilename": "projectsCRUD-1541777167-latest-build.zip",
+			"lastPackageTimeStamp": "2018-11-10T15:34:29.644Z",
+			"distZipFilename": "projectsCRUD-1541864060-latest-build.zip",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/projectsCRUD-cloudformation-template.json",
 				"logicalId": "functionprojectsCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.447Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.202Z",
 			"output": {
 				"Region": "eu-west-1",
 				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:projectsCRUD",
 				"Name": "projectsCRUD"
 			},
-			"lastPushDirHash": "LP4tg08YUFml/+HRlNC+UHpIvK0="
+			"lastPushDirHash": "eTbk2mOMLaCJ39oaVdzbva1Zias="
 		},
 		"sendEmail": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true,
 			"dependsOn": [],
-			"lastBuildTimeStamp": "2018-11-09T15:26:07.587Z",
-			"lastPackageTimeStamp": "2018-11-09T15:26:16.073Z",
-			"distZipFilename": "sendEmail-1541777167-latest-build.zip",
+			"lastBuildTimeStamp": "2018-11-10T15:34:22.286Z",
+			"lastPackageTimeStamp": "2018-11-10T15:34:27.621Z",
+			"distZipFilename": "sendEmail-1541864062-latest-build.zip",
 			"providerMetadata": {
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/function/sendEmail-cloudformation-template.json",
 				"logicalId": "functionsendEmail"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.448Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.202Z",
 			"output": {
 				"Region": "eu-west-1",
 				"Arn": "arn:aws:lambda:eu-west-1:802863750415:function:sendEmail",
 				"Name": "sendEmail"
 			},
-			"lastPushDirHash": "s2VtpwcSVNqn448a3SlZ0mTnT2I="
+			"lastPushDirHash": "pZi4eVnfP8PHxK1uRyqMRS1BwJ8="
 		}
 	},
 	"auth": {
@@ -135,7 +135,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/auth/cognitob86923d5-cloudformation-template.yml",
 				"logicalId": "authcognitob86923d5"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.449Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.194Z",
 			"output": {
 				"AppClientSecret": "1hqb5bkf3hipmep50mu02gu9dvt2gib051vutiuk4ikb15rinpir",
 				"UserPoolId": "eu-west-1_uQ9bz9JkO",
@@ -166,7 +166,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/usersCRUD-cloudformation-template.json",
 				"logicalId": "apiusersCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.450Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.196Z",
 			"output": {
 				"ApiName": "usersCRUD",
 				"RootUrl": "https://ugt1tfxsii.execute-api.eu-west-1.amazonaws.com/Prod"
@@ -190,7 +190,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/projectsCRUD-cloudformation-template.json",
 				"logicalId": "apiprojectsCRUD"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.450Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.197Z",
 			"output": {
 				"ApiName": "projectsCRUD",
 				"RootUrl": "https://eiymxefuj6.execute-api.eu-west-1.amazonaws.com/Prod"
@@ -214,7 +214,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/api/email-cloudformation-template.json",
 				"logicalId": "apiemail"
 			},
-			"lastPushTimeStamp": "2018-11-09T15:52:33.455Z",
+			"lastPushTimeStamp": "2018-11-10T15:35:40.198Z",
 			"output": {
 				"ApiName": "email",
 				"RootUrl": "https://obz564xhuf.execute-api.eu-west-1.amazonaws.com/Prod"

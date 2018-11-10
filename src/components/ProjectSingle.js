@@ -30,7 +30,7 @@ class ProjectSingle extends Component{
 
                             <ProjectSingleSelf project={this.state.project}/> :
 
-                            <ProjectSingleOther project={this.state.project}/>
+                            <ProjectSingleOther project={this.state.project} user={this.props.user}/>
                         }
                     </div>
                 }

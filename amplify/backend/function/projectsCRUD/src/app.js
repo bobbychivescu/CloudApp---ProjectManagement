@@ -5,10 +5,10 @@ Licensed under the Apache License, Version 2.0 (the "License"). You may not use 
 or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations under the License.
 */
-const AWS = require('aws-sdk')
-var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
-var bodyParser = require('body-parser')
-var express = require('express')
+const AWS = require('aws-sdk');
+var awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
+var bodyParser = require('body-parser');
+var express = require('express');
 
 AWS.config.update({ region: process.env.TABLE_REGION });
 
@@ -17,14 +17,12 @@ const dynamodb = new AWS.DynamoDB.DocumentClient();
 let tableName = "projects";
 
 const partitionKeyName = "ID";
-const partitionKeyType = "S";
 const path = "/projects";
 const hashKeyPath = '/:' + partitionKeyName;
-
 // declare a new express app
-var app = express()
-app.use(bodyParser.json())
-app.use(awsServerlessExpressMiddleware.eventContext())
+var app = express();
+app.use(bodyParser.json());
+app.use(awsServerlessExpressMiddleware.eventContext());
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {

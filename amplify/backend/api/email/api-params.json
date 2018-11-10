@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/email",
+            "lambdaFunction": "sendEmail",
+            "privacy": {
+                "private": true,
+                "auth": "rw"
+            }
+        }
+    ],
+    "resourceName": "email",
+    "apiName": "myapp2adec79e",
+    "functionArns": [
+        {
+            "lambdaFunction": "sendEmail"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "myapp-20181106020146-authRole",
+        "unAuthRoleName": "myapp-20181106020146-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "sendEmail",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

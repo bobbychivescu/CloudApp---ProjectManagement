@@ -57,7 +57,7 @@ class ProjectSingleSelf extends Component{
 
     validateDevs = () => {
         if(this.props.project.hasOwnProperty('developers')){
-            if(this.props.project.developers.length < this.state.devs)
+            if(this.props.project.developers.length < this.state.devs.length)
                 return true;
             else return false;
         } else {
