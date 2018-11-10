@@ -33,7 +33,10 @@ const awsmobile =  {
             "endpoint": "https://obz564xhuf.execute-api.eu-west-1.amazonaws.com/Prod",
             "region": "eu-west-1"
         }
-    ]
+    ],
+    "aws_content_delivery_bucket": "myapp-20181110200130--hostingbucket",
+    "aws_content_delivery_bucket_region": "eu-west-1",
+    "aws_content_delivery_url": "http://myapp-20181110200130--hostingbucket.s3-website-eu-west-1.amazonaws.com"
 };
 
 

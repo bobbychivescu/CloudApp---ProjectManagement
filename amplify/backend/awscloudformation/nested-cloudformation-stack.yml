@@ -255,6 +255,13 @@
 					}
 				}
 			}
+		},
+		"hostingS3AndCloudFront": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/myapp-20181106020146-deployment/amplify-cfn-templates/hosting/template.json",
+				"Parameters": {}
+			}
 		}
 	},
 	"Outputs": {
