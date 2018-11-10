@@ -44,15 +44,6 @@ class Home extends Component{
         }
     }
 
-    mail = async () => {
-        const response = await API.post('email', '/email', {
-            body: {
-                test: 'dadadada'
-            }
-        });
-        console.log(response);
-    }
-
     render(){
         return (
             <div>
@@ -72,7 +63,6 @@ class Home extends Component{
                         this.state.projects.filter(proj => {
                             return proj.developers.includes(this.props.user.username);
                         })}/>
-                    <Button onClick={this.mail}>send mail</Button>
                 </div>
             </div>
         )

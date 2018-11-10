@@ -10,17 +10,21 @@ class ProjectSingleSelf extends Component{
         this.state = {
             newStatus: '',
             devs: [],
-            newDev: '',
-            changed: false
+            newDev: ''
         };
     }
 
     componentDidMount() {
-        this.setState({devs: this.props.project.developers})
+        if(this.props.project.hasOwnProperty('developers'))
+            this.setState({devs: this.props.project.developers});
+        this.setState({newStatus: this.props.project.status});
     }
 
     changeStatus = (e) => {
-        this.setState({ newStatus: e.target.value, changed: true });
+        if(e.target.value === '')
+            this.setState({newStatus: this.props.project.status});
+        else
+            this.setState({ newStatus: e.target.value});
     }
 
     changeDev = (e) => {
@@ -28,14 +32,15 @@ class ProjectSingleSelf extends Component{
     }
 
     addDev = async () => {
-        if(this.state.devs.includes(this.state.newDev)){
+        if(this.state.newDev === ''){
+            alert('Please type something in the textbox before adding');
+        } else if(this.state.devs.includes(this.state.newDev)){
             alert('User already added!')
         } else {
             const user = await API.get('usersCRUD', '/users/' + this.state.newDev);
             if(user.hasOwnProperty('username')){ // a valid user
                 this.setState({
-                    devs: [...this.state.devs, this.state.newDev],
-                    changed: true
+                    devs: [...this.state.devs, this.state.newDev]
                 })
             } else {
                 alert('Not a valid user!')
@@ -43,8 +48,28 @@ class ProjectSingleSelf extends Component{
         }
     }
 
+    validateStatus = () => {
+        if(this.state.newStatus !== this.props.project.status)
+            return true;
+        else
+            return false;
+    }
+
+    validateDevs = () => {
+        if(this.props.project.hasOwnProperty('developers')){
+            if(this.props.project.developers.length < this.state.devs)
+                return true;
+            else return false;
+        } else {
+            if(this.state.devs.length > 0)
+                return true;
+            else
+                return false;
+        }
+    }
+
     save = async () => {
-        if(this.state.changed){
+        if(this.validateStatus() || this.validateDevs()){
             const response = API.put('projectsCRUD', '/projects', {
                 body: {
                     ID: this.props.project.ID,
@@ -73,7 +98,7 @@ class ProjectSingleSelf extends Component{
                 <h2>Status: <Input size='mini' placeholder={project.status} onChange={this.changeStatus}/></h2>
                 <h2>Developers: </h2>
                 <Divider/>
-                {(Array.isArray(devs) && devs.length > 0) ?
+                {(devs.length > 0) ?
                     <div>
                         <List bulleted>
                             {devs.map(dev => (
