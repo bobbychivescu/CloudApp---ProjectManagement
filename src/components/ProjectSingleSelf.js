@@ -48,21 +48,63 @@ class ProjectSingleSelf extends Component{
         }
     }
 
+    notifyDevs = async () => {
+        this.state.devs.map(async (dev) => {
+           const user = await API.get('usersCRUD', '/users/' + dev);
+           const text = 'The status of the project "' + this.props.project.title +
+               '" has been updated to "' + this.state.newStatus + '"';
+           const response = await API.post('email', '/email', {
+                body: {
+                    to: user.email,
+                    subject: 'Project status updated',
+                    text: text
+                }
+            });
+           console.log(response);
+        });
+    }
+
     validateStatus = () => {
-        if(this.state.newStatus !== this.props.project.status)
+        if(this.state.newStatus !== this.props.project.status){
+            this.notifyDevs();
             return true;
+        }
         else
             return false;
     }
 
+    notifyNewDevs = async (devs) => {
+        devs.map(async (dev) => {
+            const user = await API.get('usersCRUD', '/users/' + dev);
+            const text = 'You have been added to the project "' + this.props.project.title +
+                '" by ' + this.props.project.managerName;
+            const response = await API.post('email', '/email', {
+                body: {
+                    to: user.email,
+                    subject: 'You have been added to a project',
+                    text: text
+                }
+            });
+            console.log(response);
+        })
+    }
+
+
     validateDevs = () => {
         if(this.props.project.hasOwnProperty('developers')){
-            if(this.props.project.developers.length < this.state.devs.length)
+            if(this.props.project.developers.length < this.state.devs.length){
+                this.notifyNewDevs(this.state.devs.filter(user => {
+                    return !this.props.project.developers.includes(user);
+                }));
                 return true;
+            }
             else return false;
         } else {
-            if(this.state.devs.length > 0)
+            if(this.state.devs.length > 0){
+                this.notifyNewDevs(this.state.devs);
                 return true;
+            }
+
             else
                 return false;
         }

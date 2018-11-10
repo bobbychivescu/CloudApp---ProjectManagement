@@ -9,8 +9,8 @@ class ProjectSingleOther extends Component{
 
     requestJoin = async () => {
         const manager = await API.get('usersCRUD', '/users/' + this.props.project.managerID);
-        const text = 'The developer with username ' + this.props.user + ' has requested to join your project, ' +
-            this.props.project.title + '. If you accept this request, please add them to your project.'
+        const text = 'The developer with username "' + this.props.user + '" has requested to join your project, "' +
+            this.props.project.title + '". If you accept this request, please add them to your project.'
         const resp = await API.post('email', '/email', {
             body: {
                 to: manager.email,
