@@ -26,7 +26,6 @@ class App extends Component {
         const userInfo = await Auth.currentAuthenticatedUser();
         const userFromDB = await API.get('usersCRUD', '/users/' + userInfo.username);
         //first login
-        console.log(JSON.stringify(userFromDB));
         Auth.updateUserAttributes()
         if (!userFromDB.hasOwnProperty('username')){
             while(!this.state.user.hasOwnProperty('username')){
@@ -44,14 +43,12 @@ class App extends Component {
             const resp = await API.post('usersCRUD', '/users', {
                 body: this.state.user
             });
-            console.log('after posting user:' + JSON.stringify(resp));
         }else{
             this.setState({
                 user: userFromDB
             });
         }
 
-        console.log('Current user: ' + JSON.stringify(this.state.user));
     }
 
     signOut = () => {

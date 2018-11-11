@@ -18,7 +18,6 @@ class ProjectSingleOther extends Component{
                 text: text
             }
         });
-        console.log(resp)
         alert('An email with your request has been sent to the manager of this project!');
     }
 

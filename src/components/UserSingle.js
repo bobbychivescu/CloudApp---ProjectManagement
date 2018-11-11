@@ -13,15 +13,14 @@ class UserSingle extends Component{
 
     async componentDidMount() {
         const response = await API.get('usersCRUD', '/users/' + this.props.match.params.id);
-        if (response !== {})
+        if (response.hasOwnProperty('username'))
             this.setState({user: response});
-
     }
 
     render(){
         return (
             <div>
-                {this.state.user === '{}' ?
+                {Object.keys(this.state.user).length === 0 ?
 
                     <h3>The user you are looking for doesn't exist!</h3> :
 
